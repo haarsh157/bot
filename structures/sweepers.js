@@ -1,8 +1,9 @@
 const { SnowflakeUtil, MessageEmbed, WebhookClient } = require("discord.js");
 const { isMaster } = require("cluster");
 
+// webhook2
 const memoryLogger = new WebhookClient({
-  url: "https://discord.com/api/webhooks/1217308163016233103/P75IMICLgYQYcSL4bYHaBggcyZrBZqimz39r5RLRPpVJwAShA2bg0dNaun1uoLCpdpU3",
+  url: "https://discord.com/api/webhooks/1321064972758814771/clexMgvz7_zwjmtXJR4rUHrnNfvep_LL-A4tRrpfbn-Og2Jn1_hf0-gSTrwYIwpeeNvw",
 });
 
 const THRESHOLD = 60;
@@ -77,11 +78,11 @@ module.exports = class MemorySweeper {
       users++;
     }
 
-    if (this.client.user.tag !== "Satxler#7940") return;
+    if (this.client.user.tag !== "User#123") return;
 
     const embed = new MessageEmbed()
       .setTitle(`Cluster #${this.id} | Memory Sweeper`)
-      .setColor(this.client.color)
+      .setColor(parseInt("0x000000", 16))
       .setDescription(
         `**Cache sweeped:**\n` +
           `Guild Members: \`${guildMembers}\`\n` +

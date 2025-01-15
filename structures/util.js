@@ -1,11 +1,9 @@
 const {
-  MessageEmbed,
+  EmbedBuilder,
   Collection,
   WebhookClient,
-  MessageActionRow,
-  MessageButton,
-  MessageSelectMenu,
-  MessageAttachment,
+  ActionRowBuilder,
+  ButtonBuilder,
 } = require("discord.js");
 const { getSettingsar } = require("../models/autorole");
 
@@ -92,7 +90,7 @@ module.exports = class Util {
     let content = config.content
       ? await this.client.util.parse(config.content, member)
       : `<@${member.user.id}>`;
-    const embed = new MessageEmbed();
+    const embed = new EmbedBuilder();
     if (config.embed.description) {
       embed.setDescription(
         await this.client.util.parse(config.embed.description, member)
@@ -117,8 +115,8 @@ module.exports = class Util {
       return {
         content: `<@${member.user.id}>`,
         embeds: [
-          new MessageEmbed()
-            .setColor(this.client.color)
+          new EmbedBuilder()
+            .setColor(parseInt("0xc7b700", 16))
             .setDescription(
               `Hey ${member.displayName}, Welcome to the server <a:welcome:1188456678392348702>.`
             ),
@@ -295,13 +293,12 @@ module.exports = class Util {
       let options = interaction.values;
       const funny = options[0];
       let _commands;
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setAuthor({
           name: this.client.user.username,
           iconURL: this.client.user.displayAvatarURL(),
         })
-        .setColor(this.client.color)
-
+        .setColor(parseInt("0xc7b700", 16))
         .setThumbnail(
           interaction.guild.iconURL({
             dynamic: true,
@@ -313,7 +310,7 @@ module.exports = class Util {
           .filter((x) => x.category && x.category === "security")
           .map((x) => `\`${x.name}\``);
         embed.addField(
-          `**<:Satxler_antinuke:1181289584483643433> Antinuke \`[${_commands.length}]\`**`,
+          `**<:antinuke:1181289584483643433> Antinuke \`[${_commands.length}]\`**`,
           _commands.sort().join(", ")
         );
         interaction
@@ -329,7 +326,7 @@ module.exports = class Util {
           .filter((x) => x.category && x.category === "mod")
           .map((x) => `\`${x.name}\``);
         embed.addField(
-          `**<:Satxler_moderator:1181290384576491561> Moderation \`[${_commands.length}]\`**`,
+          `**<:moderator:1181290384576491561> Moderation \`[${_commands.length}]\`**`,
           _commands.sort().join(", ")
         );
         interaction
@@ -345,7 +342,7 @@ module.exports = class Util {
           .filter((x) => x.category && x.category === "info")
           .map((x) => `\`${x.name}\``);
         embed.addField(
-          `**<:Satxler_utility:1181291761667149886> Utility \`[${_commands.length}]\`**`,
+          `**<:utility:1181291761667149886> Utility \`[${_commands.length}]\`**`,
           _commands.sort().join(", ")
         );
         interaction
@@ -361,7 +358,7 @@ module.exports = class Util {
           .filter((x) => x.category && x.category === "welcomer")
           .map((x) => `\`${x.name}\``);
         embed.addField(
-          `**<:Satxler_autorole:1181290290238210158> Welcomer \`[${_commands.length}]\`**`,
+          `**<:autorole:1181290290238210158> Welcomer \`[${_commands.length}]\`**`,
           _commands.sort().join(", ")
         );
         interaction
@@ -377,7 +374,7 @@ module.exports = class Util {
           .filter((x) => x.category && x.category === "voice")
           .map((x) => `\`${x.name}\``);
         embed.addField(
-          `**<:Satxler_mic:1181294198046072994> Voice \`[${_commands.length}]\`**`,
+          `**<:mic:1181294198046072994> Voice \`[${_commands.length}]\`**`,
           _commands.sort().join(", ")
         );
         interaction
@@ -440,7 +437,7 @@ module.exports = class Util {
             }
           });
         embed.addField(
-          `**<:Satxler_Automod:1205791245473943553> Automod \`[${cmd.length}]\`**`,
+          `**<:Automod:1205791245473943553> Automod \`[${cmd.length}]\`**`,
           cmd.sort().join(", ")
         );
         await interaction
@@ -457,44 +454,53 @@ module.exports = class Util {
 
   async manageAfk(message, client) {
     const db = require("../models/afk.js");
-    let data = await db.findOne({
-      Guild: message.guildId,
-      Member: message.author.id,
-    });
-    if (data) {
-      if (message.author.id === data.Member) {
-        await data.deleteOne();
-        return message.reply({
-          embeds: [
-            new MessageEmbed()
-              .setColor(message.client.color)
-              .setDescription(`I Removed Your AFK `),
-          ],
-        });
-      }
-    }
-    const memberMentioned = message.mentions.users.first();
 
-    if (memberMentioned) {
-      data = await db.findOne({
+    try {
+      let data = await db.findOne({
         Guild: message.guildId,
-        Member: memberMentioned.id,
+        Member: message.author.id,
       });
+
       if (data) {
-        message.reply({
-          embeds: [
-            new MessageEmbed()
-              .setColor(message.client.color)
-              .setDescription(
-                `<@${memberMentioned.id}> went AFK <t:${Math.round(
-                  data.Time / 1000
-                )}:R>\n\nFor Reason: **${data.Reason}**`
-              ),
-          ],
-        });
-      } else {
-        return;
+        if (message.author.id === data.Member) {
+          await data.deleteOne();
+          return message.reply({
+            embeds: [
+              new EmbedBuilder()
+                .setColor(parseInt("0xc7b700", 16))
+                .setDescription(
+                  `<:icons_join:1154471746448150608> | I Removed Your AFK `
+                ),
+            ],
+          });
+        }
       }
+
+      const memberMentioned = message.mentions.users.first();
+
+      if (memberMentioned) {
+        data = await db.findOne({
+          Guild: message.guildId,
+          Member: memberMentioned.id,
+        });
+        if (data) {
+          return message.reply({
+            embeds: [
+              new EmbedBuilder()
+                .setColor(parseInt("0xc7b700", 16))
+                .setDescription(
+                  `<:icons_join:1154471746448150608> | <@${
+                    memberMentioned.id
+                  }> went AFK <t:${Math.round(
+                    data.Time / 1000
+                  )}:R>\n\nFor Reason: **${data.Reason}**`
+                ),
+            ],
+          });
+        }
+      }
+    } catch (err) {
+      console.error("Error in manageAfk function:", err);
     }
   }
 
@@ -506,8 +512,8 @@ module.exports = class Util {
   }
 
   ownerbutton() {
-    const row = new MessageActionRow().addComponents(
-      new MessageButton()
+    const row = new ActionRowBuilder().addComponents(
+      new ButtonBuilder()
         .setLabel("DELETE")
         .setCustomId("DELETE_BUT")
         .setStyle("DANGER")
@@ -515,8 +521,13 @@ module.exports = class Util {
     return row;
   }
   async setPrefix(message, client) {
-    let prefix = await this.client.db.get(`prefix_${message?.guild?.id}`);
-    if (prefix === null) prefix = "&";
+    if (!message.guild) {
+      console.error("Message is not from a guild.");
+      return;
+    }
+
+    let prefix = await this.client.db.get(`prefix_${message.guild.id}`);
+    if (prefix === null || prefix === undefined) prefix = "=";
     message.guild.prefix = prefix;
   }
 
@@ -567,15 +578,22 @@ module.exports = class Util {
 
   async BlacklistCheck(guild) {
     try {
-      let data =
-        (await this.client.data.get(
-          `blacklistserver_${this.client.user.id}`
-        )) || [];
-      if (data.includes(guild.id)) {
-        return true;
-      } else {
-        return false;
+      // First verify client exists
+      if (!this.client) {
+        throw new Error("Client is not initialized");
       }
+
+      // Ensure data storage exists - depends on your setup
+      // Could be using a database, Map, or other storage
+      if (!this.client.data) {
+        this.client.data = new Map(); // or your preferred data structure
+      }
+
+      const blacklistKey = `blacklistserver_${this.client.user.id}`;
+      const blacklistedServers =
+        (await this.client.data.get(blacklistKey)) || [];
+
+      return blacklistedServers.includes(guild.id);
     } catch (error) {
       console.error("Error checking blacklist:", error);
       return false;
@@ -590,7 +608,7 @@ module.exports = class Util {
       let channel = guild.channels.cache.get(data.Boost);
       if (!channel) return;
       let count = guild.premiumSubscriptionCount;
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setColor(guild.roles.premiumSubscriberRole.color)
         .setAuthor({
           name: `🎉🎉 NEW BOOSTER 🎉🎉`,
@@ -621,7 +639,7 @@ module.exports = class Util {
       .setCustomId("queuenext")
       .setEmoji("<:ARROW:1182735884978765957>")
       .setStyle("SUCCESS");
-    let row = new MessageActionRow().addComponents(previousbut, nextbut);
+    let row = new ActionRowBuilder().addComponents(previousbut, nextbut);
     const pages = lodash.chunk(description, 10).map((x) => x.join(`\n`));
     let page = 0;
     let msg;

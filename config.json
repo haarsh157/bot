@@ -1,8 +1,10 @@
 {
-    "TOKEN": "MTMyMDM0OTk0MjMyOTUxMjAwNw.GYX2e8.pLf0Or8evwmViGjuAalzkgR2AsOMz1cXcDp9v0",
+    "TOKEN": "MTMyMzU2NTExNjQ5ODkwMzA1Mg.GVKrae.fa20MbIZC46ZBZfgXiQmZdy7_BIQSfm5RKiDlk",
+    "clientId":"1322435458868711535",
     "MONGO_DB": "mongodb+srv://harshrange:VEBHkhUmOUlpEqOr@cluster0.hqoujas.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    "API_KEY": "AIzaSyDCwT9W18M3kqp8B-i6YXZiKvXc8ItivCE",
     "cooldown": true,
-    "owner": ["ODY1NDExMjYxODQ3MzA2MjQx.Gc3aPR.770ATwY1KW6esaEEK4b8CbsoO5q2Y85bfma4x4",""],
-    "admin": ["ODY1NDExMjYxODQ3MzA2MjQx.Gc3aPR.770ATwY1KW6esaEEK4b8CbsoO5q2Y85bfma4x4"],
+    "owner": ["865411261847306241",""],
+    "admin": ["865411261847306241", "1315968368536326209"],
     "np": ["996"]
 }

@@ -2,7 +2,7 @@ const chalk = require("chalk");
 
 module.exports = class Logger {
   static log(content, type = "log") {
-    const watermark = `[${chalk.gray("WixBot")}] ||• `;
+    const watermark = `[${chalk.gray("Ineffable")}] ||• `;
     switch (type) {
       case "log": {
         return console.log(

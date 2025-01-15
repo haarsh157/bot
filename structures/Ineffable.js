@@ -1,4 +1,6 @@
 const { Client, Collection, WebhookClient } = require("discord.js");
+const { Player } = require("discord-player");
+const { DefaultExtractors } = require('@discord-player/extractor');
 const fs = require("fs");
 const mongoose = require("mongoose");
 const Utils = require("./util.js");
@@ -9,7 +11,7 @@ const Sweepers = require("./sweepers.js");
 const { QuickDB } = require("quick.db");
 const chalk = require("chalk");
 
-module.exports = class WixBot extends Client {
+module.exports = class Ineffable extends Client {
   constructor() {
     super({
       intents: 3276543,
@@ -34,21 +36,23 @@ module.exports = class WixBot extends Client {
     this.commands = new Collection();
     this.categories = fs.readdirSync("./commands/");
     this.emoji = {
-      tick: "✅",
-      cross: "❌",
+      tick: "<:right:1138768598534455346>",
+      cross: "<:wrong:1138768256673513505>",
       dot: "•",
     };
     this.util = new Utils(this);
     this.Sweeper = new Sweepers(this);
-    this.color = `0x2b2d31`;
+    this.color = `0x000000`;
     this.support = ` `;
     this.cooldowns = new Collection();
     this.snek = require("axios");
+    // webhook3
     this.ratelimit = new WebhookClient({
-      url: "https://discord.com/api/webhooks/1320339498210689046/YCZegv-nBFt4eZ5KvIkueMp6YrMIfR__gUWn2VgxKvjV7_y2phuS0NjzvswzuZnHVXmp",
+      url: "https://discord.com/api/webhooks/1321065165709639762/em9Id3z_4STGLOE7xBsfxhCB7RxWyfwCGjeBcfa_XUuDlBsF82a6qFve3pYfKh7Pmos9",
     });
+    // webhook 4
     this.error = new WebhookClient({
-      url: "https://discord.com/api/webhooks/1320339402773237770/jMhfnbsxBY45op-90aGRnhzNXKt3BDaswyoE7DvBcHunATGCPQtke5Pvrmo2yk-D4k7O",
+      url: "https://discord.com/api/webhooks/1321065298673139766/b9C09guS4feyzWfnKVwOo7yVG6UCOD1O7UXuldwe4Qmvu7Y636RTXcjYLrfOFPXt85Fo",
     });
 
     this.on("error", (error) => {
@@ -111,6 +115,35 @@ module.exports = class WixBot extends Client {
     } catch (error) {
       this.logger.error(
         `${chalk.red("Failed to connect to MongoDB:")} ${error.message}`
+      );
+      throw error;
+    }
+  }
+
+  async loadPlayer() {
+    try {
+      // Initialize the player with the client
+      this.player = new Player(this);
+      
+      // Load the default extractors using the new method
+      await this.player.extractors.loadMulti(DefaultExtractors);
+
+      // Configure player events
+      this.player.events.on('error', (queue, error) => {
+        this.logger.error(`Player error: ${error.message}`);
+      });
+
+      this.player.events.on('playerError', (queue, error) => {
+        this.logger.error(`Player playback error: ${error.message}`);
+      });
+
+      this.logger.log(
+        `${chalk.green("Music player initialized successfully.")}`,
+        "ready"
+      );
+    } catch (error) {
+      this.logger.error(
+        `${chalk.red("Failed to connect to Player:")} ${error.message}`
       );
       throw error;
     }
