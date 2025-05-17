@@ -21,7 +21,7 @@ module.exports = {
 
     const selectMenu = new StringSelectMenuBuilder()
       .setCustomId("categorySelect")
-      .setPlaceholder("> Ineffable Get Started!!")
+      .setPlaceholder("> wixbot Get Started!!")
       .addOptions([
         // {
         //   label: "AntiNuke",
@@ -135,25 +135,25 @@ module.exports = {
         {
           name: "**__Modules__**",
           value:
-            // `> <:emo1:1320351649063108662> \`:\` **[AntiNuke](https://discord.gg/inef)**\n` +
-            `> ${emojis.mod} \`:\` **[Moderation](https://discord.gg/inef)**\n` +
-            // `> <:emo1:1320351649063108662> \`:\` **[Welcomer](https://discord.gg/inef)**\n` +
-            // `> <:emo1:1320351649063108662> \`:\` **[Automod](https://discord.gg/inef)**\n` +
-            `> ${emojis.utility} \`:\` **[Utility](https://discord.gg/inef)**`,
+            // `> <:emo1:1320351649063108662> \`:\` **[AntiNuke](https://discord.gg/wixbot)**\n` +
+            `> ${emojis.mod} \`:\` **[Moderation](https://discord.gg/wixbot)**\n` +
+            // `> <:emo1:1320351649063108662> \`:\` **[Welcomer](https://discord.gg/wixbot)**\n` +
+            // `> <:emo1:1320351649063108662> \`:\` **[Automod](https://discord.gg/wixbot)**\n` +
+            `> ${emojis.utility} \`:\` **[Utility](https://discord.gg/wixbot)**`,
           inline: true,
         },
         {
           name: "** **",
           value:
-            // `> <:emo1:1320351649063108662> \`:\` **[Logging](https://discord.gg/inef)**\n` +
-            `> ${emojis.voice} \`:\` **[Voice](https://discord.gg/inef)**\n` +
-            // `> <:emo1:1320351649063108662> \`:\` **[Custom Role](https://discord.gg/inef)**\n` +
-            `> ${emojis.extra} \`:\` **[Extra](https://discord.gg/inef)**`,
+            // `> <:emo1:1320351649063108662> \`:\` **[Logging](https://discord.gg/wixbot)**\n` +
+            `> ${emojis.voice} \`:\` **[Voice](https://discord.gg/wixbot)**\n` +
+            // `> <:emo1:1320351649063108662> \`:\` **[Custom Role](https://discord.gg/wixbot)**\n` +
+            `> ${emojis.extra} \`:\` **[Extra](https://discord.gg/wixbot)**`,
           inline: true,
         },
         {
           name: ":link: **__Links__**",
-          value: `[Invite](https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=8&integration_type=0&scope=bot) | [Support](https://discord.gg/inef) | [Vote](https://discord.gg/inef)\n\n**Check our Official handles**\n[<:Instagram:1139539696301637745> **INSTAGRAM**](https://www.instagram.com/dc_ineffable/) | [<:inef_twitter:1230530649438421082> **TWITTER**](https://x.com/DC_INEFFABLE) | [<:inef_Youtube:1191078411020546058> **YOUTUBE**](https://www.youtube.com/@dc_ineffable/)\n`,
+          value: `[Invite](https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=8&integration_type=0&scope=bot) | [Support](https://discord.gg/wixbot) | [Vote](https://discord.gg/wixbot)\n\n**Check our Official handles**\n[<:Instagram:1139539696301637745> **INSTAGRAM**](https://www.instagram.com/dc_wixbot/) | [<:wixbot_twitter:1230530649438421082> **TWITTER**](https://x.com/DC_wixbot) | [<:wixbot_Youtube:1191078411020546058> **YOUTUBE**](https://www.youtube.com/@dc_wixbot/)\n`,
           inline: false,
         },
       ])

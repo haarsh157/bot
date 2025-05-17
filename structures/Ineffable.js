@@ -11,7 +11,7 @@ const Sweepers = require("./sweepers.js");
 const { QuickDB } = require("quick.db");
 const chalk = require("chalk");
 
-module.exports = class Ineffable extends Client {
+module.exports = class wixbot extends Client {
   constructor() {
     super({
       intents: 3276543,

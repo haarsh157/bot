@@ -1,7 +1,7 @@
 require("dotenv").config();
 require("module-alias/register");
 const path = require("path");
-const Ineffable = require("./structures/Ineffable");
+const wixbot = require("./structures/wixbot");
 const config = require("./config.json");
 
 // Utility function for controlled delay
@@ -9,7 +9,7 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 class BotInitializer {
   constructor() {
-    this.client = new Ineffable();
+    this.client = new wixbot();
     this.config = config;
   }
 

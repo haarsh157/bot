@@ -52,7 +52,7 @@ module.exports = {
     const generalEmbed = new EmbedBuilder()
       .setColor(parseInt("0xc7b700", 16))
       .setAuthor({
-        name: "Ineffable Information",
+        name: "wixbot Information",
         iconURL: client.user.displayAvatarURL(),
       })
       .setDescription(
@@ -87,7 +87,7 @@ module.exports = {
         await interaction.deferUpdate();
         const partnersEmbed = new EmbedBuilder()
           .setColor(parseInt("0xc7b700", 16))
-          .setTitle("INEFFABLE Partners")
+          .setTitle("wixbot Partners")
           .setFooter({ text: "Powered by xyz" })
           .setThumbnail(client.user.displayAvatarURL());
 

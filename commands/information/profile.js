@@ -77,7 +77,7 @@ module.exports = {
       .setColor(parseInt("0xc7b700", 16)) // Default color in case client.color is undefined
       .setTimestamp()
       .setDescription(
-        `**BADGES** <:inef_nitroboost:1149948007559741440>\n${
+        `**BADGES** <:wixbot_nitroboost:1149948007559741440>\n${
           badges || "`No Badge Available`"
         }`
       );

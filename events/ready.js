@@ -6,7 +6,7 @@ module.exports = async (client) => {
     client.user.setPresence({
       activities: [
         {
-          name: "=help at gg/inef.",
+          name: "=help at gg/wixbot.",
           type: ActivityType.Listening,
         },
       ],
